@@ -1,0 +1,27 @@
+.articleInfo {
+  display: block;
+  background-color: #FFFFFF;
+  padding: 16px;
+}
+
+.articleTitle {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.articleBody {
+  margin-top: 32px;
+  background: #FFFFFF;
+  border-radius: 4px;
+}
+
+.paragraph:global {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.articleTitle {
+  margin-bottom: 16px;
+}
