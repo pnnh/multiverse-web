@@ -1,17 +1,9 @@
-import React from "react";
-import { Async, useAsync } from "react-async"
-import { selectArticleModels, ArticleModel } from "@/models/article";
-import styles from '../page.module.css'
-import { calcPagination } from "@/utils/helpers";
-import { LoadPictureList } from "../page";
+import React from 'react' 
 
 
-
-export default async function Home({ params }: { params: { page: number } }) {
-  console.debug("params22332", params)
-  const page = Number(params.page)
-  const piclist = await LoadPictureList(page)
+export default async function Home ({ params }: { params: { page: number } }) {
+   
   return <div>
-    {piclist}
+    <h1>已成功登录: {params.page}</h1>
   </div>
 }

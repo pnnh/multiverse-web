@@ -1,7 +1,11 @@
+import Link from 'next/link'
 import './global.css'
 import styles from './layout.module.css'
 
-export default function RootLayout({
+// 隔几秒重新验证下数据
+export const revalidate = 10
+
+export default function RootLayout ({
   children,
 }: {
   children: React.ReactNode
@@ -9,8 +13,7 @@ export default function RootLayout({
   return (
     <html>
       <head>
-        <title>北极星</title>
-        <base href="/" />
+        <title>账户中心</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <meta name="renderer" content="webkit" />
@@ -21,7 +24,6 @@ export default function RootLayout({
       </head>
       <body>
         <header className={styles.navHeader}>
-          <NavHeader />
         </header>
         <main>{children}</main>
         <footer>
@@ -31,11 +33,3 @@ export default function RootLayout({
   )
 }
 
-function NavHeader() {
-  return <div className={styles.headerRow}>
-    <div>
-      <a className={styles.navLink} href='/'>首页</a>&nbsp;
-      <a className={styles.navLink} href='/'>文章</a>
-    </div>
-  </div>
-}
