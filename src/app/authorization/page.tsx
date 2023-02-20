@@ -1,5 +1,6 @@
-export default async function Home () {
-  const postUrl = '/server/oauth2/auth?client_id=pwa&redirect_uri=https%3A%2F%2Fdebug.polaris.direct%2Flogin%2Fcallback&response_type=code&scope=openid&state=some-random-state-foobar&nonce=some-random-nonce'
+export default async function Home (props: { [key: string]: any }) {
+  const postUrl = '/server/oauth2/auth?client_id=pwa&redirect_uri=https%3A%2F%2Fdebug.polaris.direct%2Fserver%2Foauth2%2Fcode&response_type=code&scope=openid&state=some-random-state-foobar&nonce=some-random-nonce'
+  console.log('Home', props)
   return <div>
       <h1>授权页面</h1>
       <div>
