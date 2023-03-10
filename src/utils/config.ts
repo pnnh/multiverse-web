@@ -10,6 +10,13 @@ export class RestfulAddress {
     }
     return ''
   }
+
+  static get ResourceServerUrl () {
+    if (isNodejs()) {
+      return process.env.RESOURCE_SERVER 
+    }
+    return ''
+  }
 }
 
 export function isNodejs () {

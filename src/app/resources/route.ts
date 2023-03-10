@@ -1,29 +1,39 @@
 
+import { getAccountModel } from '@/models/account'
 import { NextRequest, NextResponse } from 'next/server' 
 import { Issuer } from 'openid-client'  
 import queryString from 'query-string'
 
-
-// export async function GET ({ params, searchParams }: { 
-//   params: { slug: string;
-//   searchParams?: { [key: string]: string | string[] | undefined }; } }) { 
-//   console.log('router22', searchParams)
-//   const introspectResult = await loadGet(searchParams.token)  
-//   return NextResponse.json({
-//     ok: 'GET2222222 /api/route',
-//     data: introspectResult
-//   })
-// }
 export async function GET (request: NextRequest) { 
   const searchParams = queryString.parseUrl(request.url).query
   console.log('router22', searchParams)
   const introspectResult = await loadGet(searchParams.token)  
+  console.log('introspectResult', introspectResult)
+  if (!introspectResult || !introspectResult.active || !introspectResult.username) {
+    return NextResponse.json({
+      code: 400,
+      message: 'introspectResult failed'
+    })
+  }
   if (introspectResult && introspectResult.active) {
+
+    const str = introspectResult.username + ':' + introspectResult.username
+    const basicToken = 'Basic ' + Buffer.from(str).toString('base64')
+    const accountModel = await getAccountModel(basicToken)
+    console.log('accountModel', accountModel)
+
+    if (!accountModel || !accountModel.account || !accountModel.nickname) {
+      return NextResponse.json({
+        code: 400,
+        message: 'accountModel failed'
+      })
+    }
+
     return NextResponse.json({
       code: 200,
       data: {
-        username: 'NotPeter',
-        nickname: 'NotPeter'
+        username: accountModel.account,
+        nickname: accountModel.nickname,
       }
     })
   } 
