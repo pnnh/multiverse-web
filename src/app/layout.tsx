@@ -1,19 +1,18 @@
-import Link from 'next/link'
-import './global.css'
-import styles from './layout.module.css'
+import './global.css' 
 
 // 隔几秒重新验证下数据
 export const revalidate = 10
 
-export default function RootLayout ({
+export default async function RootLayout ({
   children,
 }: {
   children: React.ReactNode
-}) {
+}) { 
   return (
     <html>
       <head>
-        <title>账户中心</title>
+        <title>多远宇宙</title>
+        <base href="/" />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
         <meta name="renderer" content="webkit" />
@@ -23,13 +22,8 @@ export default function RootLayout ({
         <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
       </head>
       <body>
-        <header className={styles.navHeader}>
-        </header>
-        <main>{children}</main>
-        <footer>
-        </footer>
+      {children}
       </body>
     </html>
   )
 }
-

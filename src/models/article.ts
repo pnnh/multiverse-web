@@ -1,7 +1,7 @@
 import { RestfulAddress } from '@/utils/config'
 import axios from 'axios'
 import { CommonReslut } from './common-result'
-
+ 
 export class ArticleModel {
   pk = ''
   title = ''
@@ -24,13 +24,13 @@ export async function selectArticleModels (page: number, size: number): Promise<
   if (offset < 0) {
     offset = 0
   }
-  const response = await axios.get<CommonReslut<selectResultModel>>(RestfulAddress.ArticleService + '/server/article/select',
+  const response = await axios.get<CommonReslut<selectResultModel>>(RestfulAddress.ResourceServerUrl + '/article/select',
     { params: { offset, limit: size } })
   return response.data.data
 }
 
 export async function getArticleModel (pk: string): Promise<ArticleModel> {
-  const response = await axios.get<CommonReslut<ArticleModel>>(RestfulAddress.ArticleService + '/server/article/get', { params: { pk } })
+  const response = await axios.get<CommonReslut<ArticleModel>>(RestfulAddress.ResourceServerUrl + '/article/get', { params: { pk } })
   return response.data.data
 }
 

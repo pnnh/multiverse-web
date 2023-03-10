@@ -16,4 +16,3 @@ export function LoginPage () {
   <button onClick={() => loginUser(username).then() }>Login</button>
   </div>
 }
- 
