@@ -4,7 +4,6 @@ const resourceServerUrl = process.env.RESOURCE_SERVER || 'http://127.0.0.1:8002'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: '',
   experimental: {
     appDir: true,
   },
@@ -17,6 +16,10 @@ const nextConfig = {
       {
         source: '/server/:path*',
         destination: serverUrl + '/server/:path*',
+      },
+      {
+        source: '/.well-known/:path*',
+        destination: serverUrl + '/.well-known/:path*',
       },
       {
         source: '/resource/:path*',
