@@ -1,20 +1,20 @@
 import React from 'react' 
-import { selectArticleModels, ArticleModel } from '@/models/article'
+import { selectResourceModels, ResourceModel } from '@/models/resource'
 import styles from './page.module.css'
 import { calcPagination } from '@/utils/helpers'
 import Link from 'next/link'
 import { PSButton, PSCard } from '@/components/client/controls' 
 import { loadHeaderNav } from '@/components/nav'
 
-export async function LoadPictureList (page = 1) {
+export async function LoadResourceList (page = 1) {
   const pageSize = 8
-  const result = await selectArticleModels(page, pageSize)
+  const result = await selectResourceModels(page, pageSize)
   const pagination = calcPagination(page, result.count, pageSize)
   
   return <div className={styles.articleContainer}>
       <div className={styles.articleList}>
         {result.list.map((model) => {
-          return <ArticleItem key={model.pk} model={model} />
+          return <ResourceItem key={model.pk} model={model} />
         })
         }
       </div>
@@ -41,10 +41,10 @@ export async function LoadPictureList (page = 1) {
     </div>
 }
 
-export function ArticleItem (props: { model: ArticleModel }) {
-  const readUrl = '/article/read/' + props.model.pk
+export function ResourceItem (props: { model: ResourceModel }) {
+  const readUrl = '/resource/read/' + props.model.pk
   return <PSCard className={styles.articleItem}>
-    <article className={styles.articleContent}>
+    <div className={styles.articleContent}>
       <h1 className={styles.articleTitle}> 
         <Link className={styles.articleLink} href={readUrl}>{props.model.title}</Link>
       </h1>
@@ -54,12 +54,12 @@ export function ArticleItem (props: { model: ArticleModel }) {
       <div>
       <PSButton>阅读更多</PSButton>
       </div>
-    </article>
+    </div>
   </PSCard>
 }
 
 export default async function Home () {
-  const piclist = await LoadPictureList()
+  const piclist = await LoadResourceList()
   const headerNav = await loadHeaderNav()
   return <>
         {headerNav}

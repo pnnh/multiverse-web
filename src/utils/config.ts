@@ -1,12 +1,5 @@
 
 export class RestfulAddress {
-  static get ArticleService () {
-    if (isNodejs()) {
-      return process.env.RESOURCE_SERVER 
-    }
-    return ''
-  }
-
   static get ResourceServerUrl () {
     if (isNodejs()) {
       return process.env.RESOURCE_SERVER 
